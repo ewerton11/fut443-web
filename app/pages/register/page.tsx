@@ -1,8 +1,36 @@
 'use client'
 
 import Header from '@/app/components/header/header'
+import { createUser } from '@/app/services/apiService'
+import { useState } from 'react'
 
 export default function Register() {
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    e.preventDefault()
+    try {
+      const newUser = await createUser(userData)
+      console.log('Novo usuário criado:', newUser)
+      // Aqui você pode redirecionar o usuário para outra página, exibir uma mensagem de sucesso, etc.
+    } catch (error: any) {
+      console.error('Erro ao criar usuário:', error.message)
+    }
+  }
+
   return (
     <div className="bg-slate-100 flex flex-col items-center min-h-screen">
       <Header />
@@ -23,7 +51,9 @@ export default function Register() {
               <div className="w-full h-10 mt-3">
                 <input
                   type="text"
-                  name="name"
+                  name="username"
+                  value={userData.username}
+                  onChange={handleChange}
                   placeholder="Seu nome"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
@@ -36,6 +66,8 @@ export default function Register() {
                 <input
                   type="email"
                   name="email"
+                  value={userData.email}
+                  onChange={handleChange}
                   placeholder="Seu email"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
@@ -45,6 +77,8 @@ export default function Register() {
                 <input
                   type="password"
                   name="password"
+                  value={userData.password}
+                  onChange={handleChange}
                   placeholder="Sua senha"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
@@ -54,6 +88,7 @@ export default function Register() {
 
             <button
               type="submit"
+              onClick={handleSubmit}
               className="bg-blue-500 text-white rounded-md p-2 mt-7 w-full hover:bg-blue-700"
             >
               Registrar
