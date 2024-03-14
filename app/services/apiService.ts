@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { IUserData } from '../types/userData'
 
-const baseURL = 'http://localhost:5277/api'
+const baseURL = 'https://localhost:7276/api'
 
 const apiService = axios.create({
   baseURL,
