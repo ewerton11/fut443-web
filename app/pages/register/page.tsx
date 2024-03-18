@@ -2,9 +2,12 @@
 
 import Header from '@/app/components/header/header'
 import { createUser } from '@/app/services/apiService'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Register() {
+  const router = useRouter()
+
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -23,9 +26,13 @@ export default function Register() {
   ): Promise<void> => {
     e.preventDefault()
     try {
-      const newUser = await createUser(userData)
-      console.log('Novo usuário criado:', newUser)
-      // Aqui você pode redirecionar o usuário para outra página, exibir uma mensagem de sucesso, etc.
+      const newUser = (await createUser(userData)) as unknown as IUserResponse
+
+      if (newUser.token) {
+        localStorage.setItem('token', newUser.token)
+
+        router.push('/')
+      }
     } catch (error: any) {
       console.error('Erro ao criar usuário:', error.message)
     }
@@ -46,7 +53,7 @@ export default function Register() {
           <div className="w-full h-auto">
             <div className="w-full">
               <h1 className="text-black font-bold text-sm">
-                Informação pessoal
+                Informação do usuario
               </h1>
               <div className="w-full h-10 mt-3">
                 <input
@@ -54,7 +61,7 @@ export default function Register() {
                   name="username"
                   value={userData.username}
                   onChange={handleChange}
-                  placeholder="Seu nome"
+                  placeholder="Seu nome de usuário"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
                 />
