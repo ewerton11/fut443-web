@@ -1,28 +1,41 @@
 'use client'
 
+import ProtectRoute from '@/app/components/ProtectRoute/ProtectRoute'
 import Header from '@/app/components/header/header'
+import { loginUser } from '@/app/services/apiService'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const router = useRouter()
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setEmail(e.target.value)
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    })
   }
 
-  const handlePasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setPassword(e.target.value)
-  }
-
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
     e.preventDefault()
-    // Aqui você pode adicionar a lógica para enviar os dados de login
-    console.log('Email:', email)
-    console.log('Password:', password)
-    // Lógica adicional para enviar os dados para a API ou servidor
+    try {
+      const validUser = (await loginUser(userData)) as unknown as IUserResponse
+
+      if (validUser.token) {
+        localStorage.setItem('token', validUser.token)
+
+        router.push('/')
+      }
+    } catch (error: any) {
+      console.error('Erro ao fazer login:', error.message)
+    }
   }
 
   return (
@@ -42,8 +55,8 @@ export default function Login() {
                 <input
                   type="email"
                   name="email"
-                  value={email}
-                  onChange={handleEmailChange}
+                  value={userData.email}
+                  onChange={handleChange}
                   placeholder="Seu email"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
@@ -55,8 +68,8 @@ export default function Login() {
                 <input
                   type="password"
                   name="password"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  value={userData.password}
+                  onChange={handleChange}
                   placeholder="Sua senha"
                   className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
                     focus:border-b focus:border-gray-300"
