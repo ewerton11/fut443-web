@@ -1,5 +1,6 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import ProtectRoute from '../ProtectRoute/ProtectRoute'
 
 export default function Header() {
   const pathname = usePathname()
