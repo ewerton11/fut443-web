@@ -1,7 +1,7 @@
 'use client'
 
+import { createUser } from '@/app/api/userApi'
 import Header from '@/app/components/header/header'
-import { createUser } from '@/app/services/apiService'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 

@@ -1,13 +1,15 @@
 'use client'
 
-import ProtectRoute from '@/app/components/ProtectRoute/ProtectRoute'
+import { loginUser } from '@/app/api/userApi'
 import Header from '@/app/components/header/header'
-import { loginUser } from '@/app/services/apiService'
+import { useAuth } from '@/app/context/useAuth'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Login() {
   const router = useRouter()
+
+  const { login } = useAuth()
 
   const [userData, setUserData] = useState({
     email: '',
@@ -30,6 +32,8 @@ export default function Login() {
 
       if (validUser.token) {
         localStorage.setItem('token', validUser.token)
+
+        login()
 
         router.push('/')
       }

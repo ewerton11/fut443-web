@@ -1,8 +1,15 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import ProtectRoute from '../ProtectRoute/ProtectRoute'
+import { useAuth } from '@/app/context/useAuth'
 
 export default function Header() {
+  const { isLoggedIn, logout } = useAuth()
+
+  const handleLogout = () => {
+    logout() // Chama a função de logout do contexto de autenticação
+    // Lógica adicional de redirecionamento ou limpeza de estado, se necessário
+  }
+
   const pathname = usePathname()
 
   return (
@@ -14,27 +21,40 @@ export default function Header() {
       </div>
       <nav>
         <ul className="w-auto h-12 mr-5 flex items-center justify-between">
-          {pathname === '/' ? (
-            <li className="bg-yellow-300 hover:bg-yellow-400 rounded-md p-1 mr-3">
-              <Link href="/pages/register">
-                <p className="text-black text-sm">Registrar</p>
-              </Link>
+          {isLoggedIn ? (
+            <li>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           ) : (
-            <li className={`${pathname === '/pages/register' ? 'hidden' : ''}`}>
-              <Link href="/pages/register">
-                <p className="text-white hover:text-slate-200 text-sm">
-                  Registrar
-                </p>
-              </Link>
-            </li>
+            <>
+              {pathname === '/' ? (
+                <li className="bg-yellow-300 hover:bg-yellow-400 rounded-md p-1 mr-3">
+                  <Link href="/pages/register">
+                    <p className="text-black text-sm">Registrar</p>
+                  </Link>
+                </li>
+              ) : (
+                <li
+                  className={`${
+                    pathname === '/pages/register' ? 'hidden' : ''
+                  }`}
+                >
+                  <Link href="/pages/register">
+                    <p className="text-white hover:text-slate-200 text-sm">
+                      Registrar
+                    </p>
+                  </Link>
+                </li>
+              )}
+              <li className={`${pathname === '/pages/login' ? 'hidden' : ''}`}>
+                <Link href="/pages/login">
+                  <p className="text-white hover:text-slate-200 text-sm">
+                    Login
+                  </p>
+                </Link>
+              </li>
+            </>
           )}
-
-          <li className={`${pathname === '/pages/login' ? 'hidden' : ''}`}>
-            <Link href="/pages/login">
-              <p className="text-white hover:text-slate-200 text-sm">Login</p>
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>
