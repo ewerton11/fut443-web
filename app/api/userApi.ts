@@ -1,17 +1,7 @@
-import axios, { AxiosResponse } from 'axios'
+import apiService from './axiosConfig'
+import { AxiosResponse } from 'axios'
 import { ICreateUserData } from '../types/createUserData'
 import { ILoginUserData } from '../types/loginUserData'
-
-const baseURL = 'https://localhost:7276/api'
-const token = localStorage.getItem('token')
-
-const apiService = axios.create({
-  baseURL,
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
-  },
-})
 
 export const createUser = async (
   createUserData: ICreateUserData
@@ -23,7 +13,7 @@ export const createUser = async (
     )
     return response.data
   } catch (error: any) {
-    throw new Error('An error occurred while creating the user:', error)
+    throw new Error('An error occurred while creating the user:' + error)
   }
 }
 
@@ -37,7 +27,7 @@ export const loginUser = async (
     )
     return response.data
   } catch (error: any) {
-    throw new Error('An error occurred while creating the user:', error)
+    throw new Error('An error occurred while creating the user:' + error)
   }
 }
 
@@ -46,6 +36,6 @@ export const getUserData = async (): Promise<any> => {
     const response = await apiService.get('/user/read-user-and-team')
     return response.data
   } catch (error: any) {
-    throw new Error('An error occurred while fetching user data:', error)
+    throw new Error('An error occurred while fetching user data:' + error)
   }
 }
