@@ -1,27 +1,14 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { checkAuthentication } from '@/app/utils/auth/auth'
+import { useAuth } from '@/app/context/useAuth'
 
 const ProtectRoute = ({ children }: ProtectRouteProps) => {
-  const [noAccess, setNoAccess] = useState<boolean>(true)
-  const router = useRouter()
+  const { isAuthenticated } = useAuth()
 
-  useEffect(() => {
-    const isAuthenticated = checkAuthentication()
-
-    if (!isAuthenticated) {
-      router.push('/pages/register')
-    } else {
-      setNoAccess(false)
-    }
-  }, [router])
-
-  return noAccess ? (
+  return isAuthenticated ? (
+    <>{children}</>
+  ) : (
     <div className="min-h-screen flex justify-center items-center">
       pagina privada fdpppp
     </div>
-  ) : (
-    <>{children}</>
   )
 }
 

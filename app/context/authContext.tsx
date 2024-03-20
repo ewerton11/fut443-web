@@ -1,35 +1,38 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { IChildrenProps } from '../types/childrenProps'
 
 export const AuthContext = createContext<AuthContextData | undefined>(undefined)
 
 // Provedor do contexto de autenticação
 export const AuthProvider = ({ children }: IChildrenProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-
-    if (token) {
-      setIsLoggedIn(true)
+    // Verificar se o token está armazenado no localStorage ou sessionStorage ao carregar a página
+    const storedToken = localStorage.getItem('token')
+    if (storedToken) {
+      setToken(storedToken)
+      setIsAuthenticated(true)
     }
   }, [])
 
-  const login = () => {
-    // Lógica para fazer login (por exemplo, definir isLoggedIn como true)
-    setIsLoggedIn(true)
+  const login = (newToken: string) => {
+    localStorage.setItem('token', newToken)
+    setToken(newToken)
+    setIsAuthenticated(true)
   }
 
   const logout = () => {
-    // Lógica para realizar o logout
-    setIsLoggedIn(false)
-    localStorage.removeItem('token') // Limpar o token do localStorage ao fazer logout
+    localStorage.removeItem('token')
+    setToken(null)
+    setIsAuthenticated(false)
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

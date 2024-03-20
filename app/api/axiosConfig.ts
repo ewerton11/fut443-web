@@ -13,7 +13,8 @@ apiService.interceptors.request.use(
   (config) => {
     // Verifica se a rota requer autorização (token)
     const requiresAuth =
-      !config.url?.includes('/login') && !config.url?.includes('/create')
+      !config.url?.includes('/AuthUser/login') &&
+      !config.url?.includes('/user/create')
 
     const token = localStorage.getItem('token')
 

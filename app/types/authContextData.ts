@@ -1,5 +1,5 @@
 interface AuthContextData {
-  isLoggedIn: boolean
-  login: () => void
+  isAuthenticated: boolean
+  login: (newToken: string) => void
   logout: () => void
 }

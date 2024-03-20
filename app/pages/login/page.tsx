@@ -33,7 +33,7 @@ export default function Login() {
       if (validUser.token) {
         localStorage.setItem('token', validUser.token)
 
-        login()
+        login(validUser.token)
 
         router.push('/')
       }

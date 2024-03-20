@@ -1,38 +1,46 @@
 'use client'
 
-import { useState } from 'react'
-import { getUserData } from '@/app/services/apiService'
+// Importe os módulos necessários
+import { useEffect, useState } from 'react'
+import ProtectRoute from '@/app/components/ProtectRoute/ProtectRoute'
+import { useAuth } from '@/app/context/useAuth'
+import { getUserData } from '@/app/api/userApi'
 
-export default function Homeee() {
+export default function Home() {
   const [userData, setUserData] = useState(null)
-  const [error, setError] = useState(null)
+  const { isAuthenticated } = useAuth() // Use o hook useAuth para verificar a autenticação
 
+  // Função para obter os dados do usuário
   const handleGetUserData = async () => {
     try {
-      const data = await getUserData()
-      setUserData(data)
-    } catch (error: any) {
-      setError(error.message)
+      if (isAuthenticated) {
+        const data = await getUserData()
+        setUserData(data)
+      } else {
+        throw new Error('Usuário não autenticado')
+      }
+    } catch (error) {
+      console.error('Erro ao obter os dados do usuário:', error)
     }
   }
 
+  // Use useEffect para chamar handleGetUserData na montagem do componente
+  useEffect(() => {
+    handleGetUserData()
+  }, [isAuthenticated]) // Chame useEffect sempre que o estado de autenticação (isLoggedIn) mudar
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl font-bold mb-4">Teste de Autenticação</h1>
-      <button
-        onClick={handleGetUserData}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Obter Dados do Usuário
-      </button>
-      <div className="mt-4">
-        {error && <div className="text-red-500">{error}</div>}
-        {userData && (
-          <pre className="bg-gray-200 p-4 rounded text-black">
-            {JSON.stringify(userData, null, 2)}
-          </pre>
-        )}
+    <ProtectRoute>
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-3xl font-bold mb-4">Teste de Autenticação</h1>
+        <div className="mt-4">
+          {userData && (
+            <pre className="bg-gray-200 p-4 rounded text-black">
+              {JSON.stringify(userData, null, 2)}
+            </pre>
+          )}
+        </div>
       </div>
-    </div>
+    </ProtectRoute>
   )
 }
