@@ -1,46 +1,41 @@
 'use client'
 
-// Importe os módulos necessários
-import { useEffect, useState } from 'react'
-import ProtectRoute from '@/app/components/ProtectRoute/ProtectRoute'
-import { useAuth } from '@/app/context/useAuth'
 import { getUserData } from '@/app/api/userApi'
+import { useAuth } from '@/app/context/useAuth'
+import { useEffect, useState } from 'react'
 
-export default function Home() {
+export default function Read() {
   const [userData, setUserData] = useState(null)
-  const { isAuthenticated } = useAuth() // Use o hook useAuth para verificar a autenticação
+  const { isAuthenticated } = useAuth()
 
-  // Função para obter os dados do usuário
-  const handleGetUserData = async () => {
-    try {
-      if (isAuthenticated) {
-        const data = await getUserData()
-        setUserData(data)
-      } else {
-        throw new Error('Usuário não autenticado')
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (isAuthenticated) {
+          const data = await getUserData()
+          setUserData(data)
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+        setUserData(null)
       }
-    } catch (error) {
-      console.error('Erro ao obter os dados do usuário:', error)
     }
+
+    fetchData()
+  }, [isAuthenticated])
+
+  if (!userData) {
+    return null
   }
 
-  // Use useEffect para chamar handleGetUserData na montagem do componente
-  useEffect(() => {
-    handleGetUserData()
-  }, [isAuthenticated]) // Chame useEffect sempre que o estado de autenticação (isLoggedIn) mudar
-
   return (
-    <ProtectRoute>
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Teste de Autenticação</h1>
-        <div className="mt-4">
-          {userData && (
-            <pre className="bg-gray-200 p-4 rounded text-black">
-              {JSON.stringify(userData, null, 2)}
-            </pre>
-          )}
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-3xl font-bold mb-4">Teste de Autenticação</h1>
+      <div className="mt-4">
+        <pre className="bg-gray-200 p-4 rounded text-black">
+          {JSON.stringify(userData, null, 2)}
+        </pre>
       </div>
-    </ProtectRoute>
+    </div>
   )
 }
