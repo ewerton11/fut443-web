@@ -28,9 +28,9 @@ export default function Header() {
           ) : (
             <>
               {pathname === '/' ? (
-                <li className="bg-yellow-300 hover:bg-yellow-400 rounded-md p-1 mr-3">
+                <li className="bg-orange-600 rounded-md p-1 mr-3">
                   <Link href="/pages/register">
-                    <p className="text-black text-sm">Registrar</p>
+                    <p className="text-white text-sm">Registrar</p>
                   </Link>
                 </li>
               ) : (

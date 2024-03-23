@@ -1,5 +1,7 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosError, AxiosInstance } from 'axios'
 import publicRoutes from './publicRoutes'
+import handleUnauthorizedResponse from './unauthorizedResponse'
+import addAuthorizationHeader from './authorizationHeader'
 
 const baseURL = 'https://localhost:7276/api'
 
@@ -11,19 +13,18 @@ const apiService: AxiosInstance = axios.create({
 })
 
 apiService.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const requiresAuth = publicRoutes.some((route) =>
       config.url?.includes(route)
     )
 
-    const token = localStorage.getItem('token')
-
-    if (!requiresAuth && token) {
-      config.headers.Authorization = `Bearer ${token}`
+    if (!requiresAuth) {
+      await addAuthorizationHeader(config)
     }
+
     return config
   },
-  (error) => {
+  async (error: AxiosError) => {
     return Promise.reject(error)
   }
 )
@@ -32,11 +33,8 @@ apiService.interceptors.response.use(
   (response) => {
     return response
   },
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      window.location.href = '/pages/login'
-    }
-    return Promise.reject(error)
+  async (error: AxiosError) => {
+    return await handleUnauthorizedResponse(error)
   }
 )
 
