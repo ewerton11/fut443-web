@@ -2,39 +2,37 @@
 
 import { createUser } from '@/app/api/userApi'
 import Header from '@/app/components/header/header'
+import { useAuth } from '@/app/context/useAuth'
+import { TRegisterSchema, registerSchema } from '@/app/schema/registerSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-export default function Register() {
-  const router = useRouter()
-
-  const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    password: '',
+export default function RegisterPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TRegisterSchema>({
+    resolver: zodResolver(registerSchema),
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUserData({
-      ...userData,
-      [e.target.name]: e.target.value,
-    })
-  }
+  const router = useRouter()
 
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement>
-  ): Promise<void> => {
-    e.preventDefault()
+  const { login } = useAuth()
+
+  const onSubmit = async (data: TRegisterSchema): Promise<void> => {
     try {
-      const newUser = (await createUser(userData)) as unknown as IUserResponse
+      //const newUser = (await createUser(data)) as unknown as IUserResponse
 
-      if (newUser.token) {
-        localStorage.setItem('token', newUser.token)
+      console.log('data', data)
 
-        router.push('/')
-      }
+      //if (newUser.token) {
+      //login(newUser.token)
+      //router.push('/')
+      //}
     } catch (error: any) {
-      console.error('Erro ao criar usuário:', error.message)
+      console.error('Error creating user:', error.message)
     }
   }
 
@@ -42,66 +40,84 @@ export default function Register() {
     <div className="bg-slate-100 flex flex-col items-center min-h-screen">
       <Header />
 
-      <main className="w-2/5 flex flex-col">
-        <div className="w-full h-auto">
-          <div className="w-auto h-20 flex items-center">
-            <h1 className="text-black font-bold text-xl">
-              Registro de Usuário
-            </h1>
+      <main className="w-full flex-grow flex justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex flex-col items-center max-w-lg px-6 py-8 bg-white shadow-md"
+        >
+          <div className="w-4/5 flex items-start mb-6">
+            <h1 className="text-black font-bold text-xl">Registrar</h1>
           </div>
 
-          <div className="w-full h-auto">
-            <div className="w-full">
-              <h1 className="text-black font-bold text-sm">
-                Informação do usuario
-              </h1>
-              <div className="w-full h-10 mt-3">
-                <input
-                  type="text"
-                  name="username"
-                  value={userData.username}
-                  onChange={handleChange}
-                  placeholder="Seu nome de usuário"
-                  className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
-                    focus:border-b focus:border-gray-300"
-                />
-              </div>
+          <div className="w-full flex flex-col items-center relative">
+            <div className="w-4/5 flex items-start mb-2">
+              <label className="block text-black font-bold text-sm">
+                Nome de usuario
+              </label>
             </div>
-            <div className="w-full mt-5">
-              <h1 className="text-black font-bold text-sm">Criar login</h1>
-              <div className="w-full h-10 mt-3">
-                <input
-                  type="email"
-                  name="email"
-                  value={userData.email}
-                  onChange={handleChange}
-                  placeholder="Seu email"
-                  className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
-                    focus:border-b focus:border-gray-300"
-                />
-              </div>
-              <div className="w-full h-10 mt-3">
-                <input
-                  type="password"
-                  name="password"
-                  value={userData.password}
-                  onChange={handleChange}
-                  placeholder="Sua senha"
-                  className="w-full h-full pl-4 text-black text-sm border-b focus:outline-none
-                    focus:border-b focus:border-gray-300"
-                />
-              </div>
-            </div>
+            <input
+              type="text"
+              placeholder="Seu nome de usuário"
+              {...register('username')}
+              className="w-4/5 px-4 py-3 text-black text-sm border rounded-lg border-gray-400
+              focus:outline-none focus:border-gray-600"
+            />
+            {errors.username && (
+              <span className="absolute -bottom-5 right-12 text-red-500 text-xs">
+                {errors.username.message}
+              </span>
+            )}
+          </div>
 
+          <div className="w-full mt-6 flex flex-col items-center relative">
+            <div className="w-4/5 flex items-start mb-2">
+              <label className="block text-black font-bold text-sm">
+                Email
+              </label>
+            </div>
+            <input
+              type="email"
+              placeholder="Seu email"
+              {...register('email')}
+              className="w-4/5 px-4 py-3 text-black text-sm border rounded-lg  border-gray-400
+              focus:outline-none focus:border-gray-600"
+            />
+            {errors.email && (
+              <span className="absolute -bottom-5 right-12 text-red-500 text-xs">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
+
+          <div className="w-full mt-6 flex flex-col items-center relative">
+            <div className="w-4/5 flex items-start mb-2">
+              <label className="block text-black font-bold text-sm">
+                Senha
+              </label>
+            </div>
+            <input
+              type="password"
+              placeholder="Sua senha"
+              {...register('password')}
+              className="w-4/5 px-4 py-3 text-black text-sm border rounded-lg  border-gray-400
+              focus:outline-none focus:border-gray-600"
+            />
+            {errors.password && (
+              <span className="absolute -bottom-5 right-12 text-red-500 text-xs">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+
+          <div className="w-4/5 flex mt-8">
             <button
               type="submit"
-              onClick={handleSubmit}
-              className="bg-blue-500 text-white rounded-md p-2 mt-7 w-full hover:bg-blue-700"
+              className="w-1/4 bg-blue-500 text-white rounded-lg p-2 hover:bg-blue-700"
             >
-              Registrar
+              Criar
             </button>
           </div>
-        </div>
+        </form>
       </main>
     </div>
   )
