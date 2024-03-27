@@ -13,7 +13,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="w-full flex justify-between items-center bg-neutral-500 h-12">
+    <header className="fixed top-0 w-full z-100 flex justify-between items-center bg-neutral-500 h-12">
       <div className="ml-5">
         <Link href="/">
           <h1 className="text-white text-lg font-bold">Fut433</h1>
