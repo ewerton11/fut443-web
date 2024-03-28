@@ -2,16 +2,19 @@
 
 import Header from './components/header/header'
 import VerticalMenu from './components/menu/verticalMenu'
+import FreePrizes from './components/sliders/freePrizes'
 
 export default function Home() {
   return (
-    <div className="relative h-screen overflow-y-auto">
+    <div className="relative w-screen h-screen">
       <Header />
-      <div className="pt-12 h-full flex flex-1 overflow-y-auto">
+      <div className="pt-12 h-full flex">
         <VerticalMenu />
-        <main className="flex flex-col flex-1 bg-black p-4 overflow-y-auto">
-          <div className="h-32 w-full bg-yellow-300">
-            <h1>Premios gratis</h1>
+        <main className="flex flex-col flex-1 p-4 overflow-y-auto">
+          <div className="flex justify-center items-center container h-32">
+            <div className="w-4/5 h-full">
+              <FreePrizes />
+            </div>
           </div>
           <div className="h-auto bg-white w-full mt-12">
             <div className="w-full">
