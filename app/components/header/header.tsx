@@ -1,60 +1,68 @@
-import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
-import { useAuth } from '@/app/context/useAuth'
+import { useState } from 'react'
 
 export default function Header() {
-  const { isLoggedIn, logout } = useAuth()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const handleLogout = () => {
-    logout() // Chama a função de logout do contexto de autenticação
-    // Lógica adicional de redirecionamento ou limpeza de estado, se necessário
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
-  const pathname = usePathname()
-
   return (
-    <header className="fixed top-0 w-full z-100 flex justify-between items-center bg-neutral-500 h-12">
-      <div className="ml-5">
-        <Link href="/">
-          <h1 className="text-white text-lg font-bold">Fut433</h1>
+    <header className="bg-primary-blue w-full h-12 flex justify-between items-center fixed top-0 z-100">
+      <div className="block md:hidden w-28 h-full">
+        <button onClick={toggleMenu}>
+          <svg
+            className="w-6 h-6 text-white cursor-pointer"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
+      <div className="w-40 h-full">
+        <Link href="/" className="h-full flex justify-center items-center">
+          <Image
+            src="/Fut443-logo.png"
+            width={100}
+            height={100}
+            alt="logo fut443"
+            className="w-4/5 h-4/5 object-cover hidden md:block"
+          />
+          <Image
+            src="/F-logo.png"
+            width={100}
+            height={100}
+            alt="logo fut443"
+            className="w-4/5 h-4/5 object-cover md:hidden"
+          />
         </Link>
       </div>
-      <nav>
-        <ul className="w-auto h-12 mr-5 flex items-center justify-between">
-          {isLoggedIn ? (
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          ) : (
-            <>
-              {pathname === '/' ? (
-                <li className="bg-orange-600 rounded-md p-1 mr-3">
-                  <Link href="/pages/register">
-                    <p className="text-white text-sm">Registrar</p>
-                  </Link>
-                </li>
-              ) : (
-                <li
-                  className={`${
-                    pathname === '/pages/register' ? 'hidden' : ''
-                  }`}
-                >
-                  <Link href="/pages/register">
-                    <p className="text-white hover:text-slate-200 text-sm">
-                      Registrar
-                    </p>
-                  </Link>
-                </li>
-              )}
-              <li className={`${pathname === '/pages/login' ? 'hidden' : ''}`}>
-                <Link href="/pages/login">
-                  <p className="text-white hover:text-slate-200 text-sm">
-                    Login
-                  </p>
-                </Link>
-              </li>
-            </>
-          )}
+      <nav className="w-28 h-full">
+        <ul className="w-full h-full flex justify-center items-center">
+          <li className="w-2/3 h-4/6 flex justify-center items-center bg-green-300 rounded-md">
+            <Link href="/pages/login">
+              <p className="text-white text-base">Login</p>
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
