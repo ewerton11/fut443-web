@@ -11,205 +11,210 @@ const FreePrizes = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 8,
-    slidesToScroll: 3,
+    slidesToScroll: 6,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+        },
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          dots: false,
+          infinite: false,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          arrows: false,
+        },
+      },
+    ],
   }
 
   const slides = [
-    <div key={1} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={1}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={2} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={2}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={3} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={3}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={4} className="flex justify-start w-20">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={4}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={5} className="flex justify-start w-20">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={5}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={6} className="flex justify-start w-20">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={6}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={7} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={7}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={8} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={8}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={9} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={9}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={10} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={10}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={11} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={11}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
-    <div key={12} className="flex justify-start">
-      <Link href="/" className="flex flex-col justify-start pl-1">
-        <div className="flex justify-center items-center w-full p-1">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              src="/nense.jpg"
-              width={75}
-              height={75}
-              alt="Uniforme Fluminense"
-              className="object-cover"
-            />
-          </div>
+    <div key={12}>
+      <Link href="/" className="flex flex-col items-center">
+        <div className="flex justify-center items-center bg-gray-100 rounded-lg p-2 w-20 h-20">
+          <Image
+            src="/nensee.png"
+            alt="Uniforme Fluminense"
+            width={65}
+            height={65}
+            className="w-4/5"
+          />
         </div>
-        <h2 className="text-sm text-center">Fluminense</h2>
+        <h2 className="text-sm text-center mt-2">Fluminense</h2>
       </Link>
     </div>,
   ]
 
-  return <Slider {...settings}>{slides}</Slider>
+  return (
+    <div className="slider-container w-full sm:w-11/12 px-2">
+      <Slider {...settings}>{slides}</Slider>
+    </div>
+  )
 }
 
 export default FreePrizes
