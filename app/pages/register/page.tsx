@@ -5,6 +5,7 @@ import Header from '@/app/components/header/header'
 import { useAuth } from '@/app/context/useAuth'
 import { TRegisterSchema, registerSchema } from '@/app/schema/registerSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
@@ -40,7 +41,7 @@ export default function RegisterPage() {
     <div className="bg-slate-100 flex flex-col items-center min-h-screen">
       <Header />
 
-      <main className="w-full flex-grow flex justify-center">
+      <main className="mt-12 w-full flex-grow flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col items-center max-w-lg px-6 py-8 bg-white shadow-md"
@@ -109,13 +110,16 @@ export default function RegisterPage() {
             )}
           </div>
 
-          <div className="w-4/5 flex mt-8">
+          <div className="w-4/5 flex justify-between items-center mt-8">
             <button
               type="submit"
-              className="w-1/4 bg-blue-500 text-white rounded-lg p-2 hover:bg-blue-700"
+              className="w-1/4 bg-primary-blue text-white font-normal rounded-lg p-2 hover:bg-blue-500"
             >
               Criar
             </button>
+            <Link href="/pages/login">
+              <p className="text-primary-blue font-normal">Login</p>
+            </Link>
           </div>
         </form>
       </main>
