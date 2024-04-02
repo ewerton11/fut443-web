@@ -29,73 +29,80 @@ export default function Home() {
             </div>
             <div className="flex flex-col">
               <div className="w-full flex justify-center">
-                <div className="w-11/12 flex">
-                  <div className="w-1/3 flex justify-center">
-                    <h2 className="p-2">Disputa</h2>
+                <div className="w-11/12 flex py-2">
+                  <div className="w-1/3 flex justify-start pl-4">
+                    <h2 className="text-sm sm:text-base">Disputa</h2>
                   </div>
                   <div className="w-1/3 flex justify-center">
-                    <h2 className="p-2">Começa em</h2>
+                    <h2 className="text-sm sm:text-base">Começa em</h2>
                   </div>
-                  <div className="w-1/3 flex justify-center">
-                    <h2 className="p-2">Premios e preços</h2>
+                  <div className="w-1/3 flex justify-end pr-4">
+                    <h2 className="text-sm sm:text-base">Premios e preços</h2>
                   </div>
                 </div>
               </div>
+
               <div className="w-full h-auto flex flex-col items-center">
                 <div className="bg-white flex w-11/12 h-32 border-b border-gray-200">
-                  <div className="w-1/3 flex flex-col justify-center">
-                    <div className="w-full h-1/3 flex items-center">
-                      <div className="pl-4">
-                        <div className="w-16 bg-red-500 rounded-lg">
-                          <p className="text-xs text-white text-center p-1">
+                  <div className="w-2/5 h-full">
+                    <div className="h-full flex flex-col justify-center pl-4">
+                      <div className="w-full h-1/3 flex items-end">
+                        <div className="w-auto px-2 bg-red-500 rounded-lg">
+                          <p className="text-xs md:text-sm text-white text-center">
                             Destaque
                           </p>
                         </div>
                       </div>
-                    </div>
-                    <div className="w-full">
-                      <div className="pl-4">
-                        <h2 className="text-base font-bold">
-                          Brasileirão rodada 01
+                      <div className="w-full h-1/3 flex items-center">
+                        <h2 className="text-sm sm:text-base font-bold">
+                          Br... | Rodada 02
                         </h2>
                       </div>
-                    </div>
-                    <div className="w-full h-1/3 flex items-center">
-                      <div className="pl-4">
-                        <h3 className="text-sm text-gray-500">Brasileirao</h3>
+                      <div className="w-full h-1/3 flex items-center">
+                        <h3 className="text-sm sm:text-base text-gray-500">
+                          Brasileirao
+                        </h3>
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/3">
+
+                  <div className="w-1/5">
                     <div className="w-full h-full flex flex-col justify-center items-center">
-                      <div className="p-2">
-                        <h1 className="text-base text-gray-500">
+                      <div className="mb-1">
+                        <h1 className="text-xs sm:text-sm text-gray-500">
                           21/03, 20:00
                         </h1>
                       </div>
-                      <div className="h-1/3">
-                        <button className="p-2 rounded-md border border-gray-300 shadow-md">
-                          <p className="text-sm text-red-500">Detalhes</p>
+                      <div className="w-4/5 mt-1 flex justify-center">
+                        <button className="p-1 rounded-md border border-gray-300 shadow-md">
+                          <p className="text-xs sm:text-sm text-red-500">
+                            Detalhes
+                          </p>
                         </button>
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/3">
-                    <div className="w-full h-full flex flex-col justify-center items-center">
-                      <div className="h-1/3 flex justify-center items-center">
-                        <p className="text-base text-red-500 font-bold">
-                          R$ 300,00
-                        </p>
-                      </div>
-                      <button className="min-w-20 w-auto bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 p-2 rounded-md shadow-md hover:shadow-lg">
-                        <p className="text-white text-sm">
-                          Participar de Graça
-                        </p>
-                      </button>
-                      <div className="h-1/3 flex justify-center items-center">
-                        <p className="text-gray-500 text-center text-sm">
-                          301 times montados
-                        </p>
+
+                  <div className="w-2/5">
+                    <div className="w-full h-full">
+                      <div className="h-full flex flex-col items-end pr-4">
+                        <div className="w-auto h-1/3 flex items-center">
+                          <p className="text-base text-red-500 font-bold">
+                            R$ 300,00
+                          </p>
+                        </div>
+                        <div className="w-auto h-1/3 flex items-center">
+                          <button className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 p-2 rounded-md shadow-md hover:shadow-lg">
+                            <p className="text-white text-xs sm:text-sm">
+                              Participar de graça
+                            </p>
+                          </button>
+                        </div>
+                        <div className="h-1/3 flex justify-center items-center">
+                          <p className="text-gray-500 text-center text-xs sm:text-sm">
+                            301 times montados
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
