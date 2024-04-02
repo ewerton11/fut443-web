@@ -2,6 +2,7 @@
 
 import { loginUser } from '@/app/api/userApi'
 import Header from '@/app/components/header/header'
+import MobileBottomBar from '@/app/components/menu/mobileBottomBar'
 import { useAuth } from '@/app/context/useAuth'
 import { TLoginSchema, loginSchema } from '@/app/schema/loginSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -40,7 +41,7 @@ export default function LoginPage() {
     <div className="bg-slate-100 flex flex-col items-center min-h-screen">
       <Header />
 
-      <main className="mt-12 w-full flex-grow flex justify-center">
+      <main className="mt-12 pb-12 sm:pb-0 w-full flex-grow flex flex-col items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col items-center max-w-lg px-6 py-8 bg-white shadow-md"
@@ -89,19 +90,32 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className="w-4/5 flex justify-between items-center mt-8">
+          <div className="w-4/5 h-auto flex flex-col justify-center items-center mt-8">
             <button
               type="submit"
-              className="w-1/4 bg-primary-blue text-white font-normal rounded-lg p-2 hover:bg-blue-500"
+              className="w-full h-3/4 flex justify-center items-center bg-primary-blue rounded-lg p-2 hover:bg-blue-500"
             >
-              Entrar
+              <p className="text-white text-base tracking-wider font-medium">
+                Entrar
+              </p>
             </button>
-            <Link href="/pages/register">
-              <p className="text-primary-blue font-normal">Criar conta</p>
-            </Link>
           </div>
         </form>
+        <div className="w-full flex justify-center mt-8">
+          <p className="text-black font-normal">Esqueceu a senha?</p>
+          <Link href="/pages/register">
+            <p className="text-primary-blue font-normal ml-1">Click aqui</p>
+          </Link>
+        </div>
+        <div className="w-full flex justify-center mt-8">
+          <button className="w-36 h-7 bg-primary-blue hover:bg-blue-500 flex justify-center items-center rounded-lg ">
+            <p className="text-white text-base tracking-wider font-medium">
+              Criar conta
+            </p>
+          </button>
+        </div>
       </main>
+      <MobileBottomBar />
     </div>
   )
 }

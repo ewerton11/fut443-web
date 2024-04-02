@@ -11,10 +11,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-primary-blue w-full h-12 flex justify-between items-center fixed top-0 z-100">
+      <header className="fixed top-0 z-100 bg-primary-blue w-full h-12 flex justify-between items-center">
         <div className="block md:hidden w-28 h-full">
           <div className="h-full flex items-center">
-            <button onClick={toggleMenu} className="ml-5">
+            <button onClick={toggleMenu} className="pl-4">
               <svg
                 className="w-6 h-6 text-white cursor-pointer"
                 fill="none"
@@ -59,17 +59,18 @@ export default function Header() {
             />
           </Link>
         </div>
-        <nav className="w-20 h-full">
-          <ul className="w-full h-full flex justify-end items-center">
-            <li className="w-2/3 h-3/5 mr-5 flex justify-center items-center bg-green-300 rounded-md">
-              <Link href="/pages/login">
-                <p className="text-blue-600 text-base tracking-wider font-medium">
-                  Login
-                </p>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="w-20 h-full">
+          <div className="w-full h-full pr-4 flex justify-end items-center">
+            <Link
+              href="/pages/login"
+              className="w-4/5 h-3/5 flex justify-center items-center bg-white rounded-md"
+            >
+              <p className="text-primary-blue text-sm tracking-wider font-medium">
+                Login
+              </p>
+            </Link>
+          </div>
+        </div>
       </header>
       {isMenuOpen && (
         <div className="absolute mt-12 bg-primary-blue w-full md:hidden z-50">

@@ -10,11 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         'primary-blue': '#9e9ee7',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        customGray: '#808080',
       },
     },
   },

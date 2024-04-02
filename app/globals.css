@@ -4,8 +4,8 @@
 
 :root {
   --roboto-font: 'Roboto', sans-serif;
-  --foreground-rgb: #00000000;
-  --background-body: #eceff1;
+  --text-color: black;
+  --background-body: #eeeeee;
 }
 
 /*
@@ -21,8 +21,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--roboto-font);
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-body));
+  color: var(--text-color);
+  background-color: var(--background-body);
 }
 
 @layer utilities {
