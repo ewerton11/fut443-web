@@ -10,7 +10,7 @@ const MobileBottomBar = () => {
   const pathname = usePathname()
 
   return (
-    <div className="block sm:hidden fixed bottom-0 z-100 h-12 w-full bg-white shadow-md">
+    <div className="block sm:hidden sticky bottom-0 z-50 h-12 w-full bg-white shadow-md">
       <nav className="w-full h-full flex px-4">
         <div className="w-1/4 h-full">
           <Link

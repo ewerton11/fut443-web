@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-100 bg-primary-blue w-full h-12 flex justify-between items-center">
+      <header className="sticky top-0 z-50 bg-primary-blue max-w-full h-12 flex justify-between items-center">
         <div className="block md:hidden w-28 h-full">
           <div className="h-full flex items-center">
             <button onClick={toggleMenu} className="pl-4">
