@@ -1,12 +1,6 @@
 import { IInfoCardProps } from '@/app/types/infoCardProps'
 
-const InfoCard = ({
-  title,
-  category,
-  date,
-  price,
-  participants,
-}: IInfoCardProps) => {
+const InfoCard = ({ title, category, date, value, teams }: IInfoCardProps) => {
   return (
     <div className="w-full h-32 flex border-b border-gray-200">
       <div className="w-2/5 h-full">
@@ -44,7 +38,7 @@ const InfoCard = ({
         <div className="w-full h-full">
           <div className="h-full flex flex-col items-end">
             <div className="w-auto h-1/3 flex items-center">
-              <p className="text-base text-red-500 font-bold">{price}</p>
+              <p className="text-base text-red-500 font-bold">{value}</p>
             </div>
             <div className="w-auto lg:w-full max-h-1/3 flex justify-end">
               <button className="lg:w-2/5 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 p-2 rounded-md shadow-md hover:shadow-lg">
@@ -53,7 +47,7 @@ const InfoCard = ({
             </div>
             <div className="h-1/3 flex justify-center items-center">
               <p className="text-gray-500 text-center text-xs sm:text-sm">
-                {participants}
+                {teams}
               </p>
             </div>
           </div>

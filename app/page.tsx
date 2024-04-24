@@ -5,13 +5,27 @@ import MobileBottomBar from './components/menu/mobileBottomBar'
 import VerticalMenu from './components/menu/verticalMenu'
 import InfoCard from './components/card/InfoCard'
 import Footer from './components/footer/footer'
-import { useState } from 'react'
-import OffersSlider from './components/sliders/offersSlider'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import Offers from './components/offers/offers'
+import { getAllCompetitionData } from './api/competitionApi'
+import { IInfoCardProps } from './types/infoCardProps'
 
 export default function Home() {
+  const [competitions, setCompetitions] = useState<CompetitionData[]>([])
   const [showLobby, setShowLobby] = useState<boolean>(true)
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const allCompetitions = await getAllCompetitionData()
+        setCompetitions(allCompetitions)
+      } catch (error) {
+        console.error('Erro ao buscar cards:')
+      }
+    }
+
+    fetchCards()
+  }, [])
 
   return (
     <div className="relative">
@@ -66,41 +80,16 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="w-full h-auto flex flex-col items-center">
-                      <InfoCard
-                        title="Brasileirão | Rodada 02"
-                        category="Brasileirao"
-                        date="21/03, 20:00"
-                        price="R$ 300,00"
-                        participants="301 times montados"
-                      />
-                      <InfoCard
-                        title="Br... | Rodada 02"
-                        category="Brasileirao"
-                        date="21/03, 20:00"
-                        price="R$ 300,00"
-                        participants="301 times montados"
-                      />
-                      <InfoCard
-                        title="Br... | Rodada 02"
-                        category="Brasileirao"
-                        date="21/03, 20:00"
-                        price="R$ 300,00"
-                        participants="301 times montados"
-                      />
-                      <InfoCard
-                        title="Br... | Rodada 02"
-                        category="Brasileirao"
-                        date="21/03, 20:00"
-                        price="R$ 300,00"
-                        participants="301 times montados"
-                      />
-                      <InfoCard
-                        title="Br... | Rodada 02"
-                        category="Brasileirao"
-                        date="21/03, 20:00"
-                        price="R$ 300,00"
-                        participants="301 times montados"
-                      />
+                      {competitions.map((competition) => (
+                        <InfoCard
+                          key={competition.Id}
+                          title={competition.Title}
+                          category="Brasileirao"
+                          date="21/03, 20:00"
+                          value={competition.Value}
+                          teams={`${competition.Teams.length} times montados`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>

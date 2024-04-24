@@ -22,7 +22,7 @@ export const loginUser = async (
 ): Promise<ILoginUserData> => {
   try {
     const response: AxiosResponse<ILoginUserData> = await apiService.post(
-      '/AuthUser/login',
+      '/user/auth/login',
       loginUserData
     )
     return response.data

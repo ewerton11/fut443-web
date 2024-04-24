@@ -25,20 +25,19 @@ export default function LoginPage() {
 
   const onSubmit = async (data: TLoginSchema) => {
     try {
-      console.log('data', data)
-      //const validUser = (await loginUser(data)) as unknown as IUserResponse
+      const validUser = (await loginUser(data)) as unknown as IUserResponse
 
-      //if (validUser.token) {
-      //login(validUser.token)
-      //router.push('/')
-      //}
+      if (validUser.token) {
+        login(validUser.token)
+        router.push('/')
+      }
     } catch (error: any) {
       console.error('Error when logging in:', error.message)
     }
   }
 
   return (
-    <div className="bg-slate-100 flex flex-col items-center min-h-screen">
+    <div className="bg-slate-100 flex flex-col items-center min-h-screen relative">
       <Header />
 
       <main className="mt-12 pb-12 sm:pb-0 w-full flex-grow flex flex-col items-center">

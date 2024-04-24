@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-primary-blue max-w-full h-12 flex justify-between items-center">
+      <header className="sticky top-0 z-50 bg-primary-blue w-full max-w-full h-14 flex justify-between items-center">
         <div className="block md:hidden w-28 h-full">
           <div className="h-full flex items-center">
             <button onClick={toggleMenu} className="pl-4">
@@ -59,13 +59,23 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="w-20 h-full">
-          <div className="w-full h-full pr-4 flex justify-end items-center">
+        <div className="w-auto h-full flex pr-16">
+          <div className="flex items-center mr-4">
+            <Link
+              href="/pages/register"
+              className="px-2 py-1.5 flex justify-center items-center bg-white rounded-md"
+            >
+              <p className="text-blue-600 text-sm tracking-wider font-medium">
+                Registrar
+              </p>
+            </Link>
+          </div>
+          <div className="w-10 h-full flex items-center">
             <Link
               href="/pages/login"
-              className="w-4/5 h-3/5 flex justify-center items-center bg-white rounded-md"
+              className="w-full h-3/5 flex justify-center items-center"
             >
-              <p className="text-primary-blue text-sm tracking-wider font-medium">
+              <p className="text-white text-sm tracking-wider font-medium">
                 Login
               </p>
             </Link>
