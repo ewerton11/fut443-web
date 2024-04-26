@@ -2,18 +2,21 @@ import React from 'react'
 import AddIcon from '@/public/add'
 import Image from 'next/image'
 
-interface Player {
-  name: string
-  team: string
-}
-
 interface PlayerCardProps {
-  player: Player
+  player: PlayersData
+  onSelect: (playerId: string) => void
 }
 
-const PlayerCard = ({ player }: PlayerCardProps) => {
+const PlayerCard = ({ player, onSelect }: PlayerCardProps) => {
+  const handleSelect = () => {
+    onSelect(player.id)
+  }
+
   return (
-    <div className="w-full h-24 flex border-b border-gray-300 cursor-pointer">
+    <div
+      className="w-full h-24 flex border-b border-gray-300 cursor-pointer"
+      onClick={handleSelect}
+    >
       <div className="ml-5 flex justify-center items-center">
         <AddIcon width={35} height={35} fillColor="#A8A8A8" />
       </div>
@@ -39,7 +42,7 @@ const PlayerCard = ({ player }: PlayerCardProps) => {
             <p className="font-bold">{player.name}</p>
           </div>
           <div className="h-1/2 flex items-start">
-            <p>{player.team}</p>
+            <p>{player.club}</p>
           </div>
         </div>
       </div>

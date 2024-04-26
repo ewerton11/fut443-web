@@ -1,14 +1,14 @@
 import React from 'react'
 
-interface Button {
-  label: string
-}
+const buttons = [
+  { label: 'Todos' },
+  { label: 'ATA' },
+  { label: 'MEI' },
+  { label: 'ZAG' },
+  { label: 'GOL' },
+]
 
-interface ButtonGroupProps {
-  buttons: Button[]
-}
-
-const ButtonGroup = ({ buttons }: ButtonGroupProps) => {
+const ButtonGroup = () => {
   return (
     <div className="w-full h-16 flex justify-around border-b border-gray-300">
       {buttons.map((button, index) => (
