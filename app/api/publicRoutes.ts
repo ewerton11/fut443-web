@@ -3,7 +3,8 @@ const publicRoutes = [
   '/user/create',
   '/comepetition',
   '/competition/read',
-  '/championship/',
+  '/championship',
+  '/team/temporary/create',
 ]
 
 export default publicRoutes
