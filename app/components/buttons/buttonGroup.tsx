@@ -12,9 +12,9 @@ const ButtonGroup = () => {
   return (
     <div className="w-full h-16 flex justify-around border-b border-gray-300">
       {buttons.map((button, index) => (
-        <div key={index} className="w-16 flex items-center">
+        <div key={index} className="w-14 flex items-center">
           <button className="w-full h-1/2 rounded-md bg-primary-blue flex justify-center items-center">
-            <p className="text-base">{button.label}</p>
+            <p className="text-sm">{button.label}</p>
           </button>
         </div>
       ))}

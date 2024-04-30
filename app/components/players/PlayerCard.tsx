@@ -4,18 +4,18 @@ import Image from 'next/image'
 
 interface PlayerCardProps {
   player: PlayersData
-  onSelect: (playerId: string) => void
+  onClick: (playerId: string) => void
 }
 
-const PlayerCard = ({ player, onSelect }: PlayerCardProps) => {
-  const handleSelect = () => {
-    onSelect(player.id)
+const PlayerCard = ({ player, onClick }: PlayerCardProps) => {
+  const handleClick = () => {
+    onClick(player.id)
   }
 
   return (
     <div
       className="w-full h-24 flex border-b border-gray-300 cursor-pointer"
-      onClick={handleSelect}
+      onClick={handleClick}
     >
       <div className="ml-5 flex justify-center items-center">
         <AddIcon width={35} height={35} fillColor="#A8A8A8" />
