@@ -32,6 +32,7 @@ export default function SelectTeam() {
 
   const handlePlayerClick = async (playerId: string) => {
     try {
+      // Não deve ter id iguais
       if (!selectedPlayers.includes(playerId)) {
         setSelectedPlayers((prevSelectedPlayers) => [
           ...prevSelectedPlayers,
@@ -60,6 +61,11 @@ export default function SelectTeam() {
       }
     } catch (error) {
       console.error('Erro ao adicionar jogador:')
+
+      const updatedSelectedPlayers = selectedPlayers.filter(
+        (player) => player !== playerId
+      )
+      setSelectedPlayers(updatedSelectedPlayers)
     }
   }
 
@@ -114,6 +120,11 @@ export default function SelectTeam() {
                   <PlayerCard
                     key={player.id}
                     player={player}
+                    attackers={attackers}
+                    midfielders={midfielders}
+                    defenders={defenders}
+                    goalkeeper={goalkeeper}
+                    teamTemporary={teamTemporary}
                     onClick={handlePlayerClick}
                   />
                 ))}
