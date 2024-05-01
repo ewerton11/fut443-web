@@ -3,22 +3,17 @@
 import { getAllPlayersByChampionshipData } from '@/app/api/championshipApi'
 import { addPlayerToTeamData } from '@/app/api/teamApi'
 import ButtonGroup from '@/app/components/buttons/buttonGroup'
-import PlayerPosition from '@/app/components/footballField/playerPosition'
+import FootballField from '@/app/components/footballField/footballField'
 import Footer from '@/app/components/footer/footer'
 import Header from '@/app/components/header/header'
 import VerticalMenu from '@/app/components/menu/verticalMenu'
 import PlayerCard from '@/app/components/players/PlayerCard'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function SelectTeam() {
-  const play = [
-    { id: 1, name: 'G. Cano', position: 'atacante', club: 'Flu...' },
-    { id: 2, name: 'Thiago Silva', position: 'atacante', club: 'Flu...' },
-  ]
-
   const [players, setPlayers] = useState<PlayersData[]>([])
-  const selectedPlayers: string[] = []
+  const [teamTemporary, setTeamTemporary] = useState<PlayersData[]>([])
+  const [selectedPlayers, setSelectedPlayers] = useState<string[]>([])
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -37,25 +32,49 @@ export default function SelectTeam() {
 
   const handlePlayerClick = async (playerId: string) => {
     try {
-      selectedPlayers.push(playerId)
+      if (!selectedPlayers.includes(playerId)) {
+        setSelectedPlayers((prevSelectedPlayers) => [
+          ...prevSelectedPlayers,
+          playerId,
+        ])
 
-      const teamTemporary = await addPlayerToTeamData(
-        '002D4417-E422-4717-B7F2-64FF0AF55605',
-        selectedPlayers
-      )
+        const teamTemporaryData = await addPlayerToTeamData(
+          '002D4417-E422-4717-B7F2-64FF0AF55605',
+          [...selectedPlayers, playerId]
+        )
 
-      console.log(teamTemporary)
+        {
+          /*
+        ao tentar adicionar 4 atacantes o quarto fica armazenado no array 
+        e se tenta adiconar algum outro que tem vaga, gera error pos o array
+        antigo com o quarto atacante deixa invalido, devo criar um logica para que
+        quando a api me retornar um error esse ultimo id selecionado deve ser removido
+          */
+        }
+
+        const newSelectedPlayers = teamTemporaryData.map((player) => player.id)
+        setSelectedPlayers(newSelectedPlayers)
+        setTeamTemporary(teamTemporaryData)
+      } else {
+        console.log('Errorrrrr no eusi')
+      }
     } catch (error) {
       console.error('Erro ao adicionar jogador:')
     }
   }
 
-  /*
-  const handleCreateTeam = () => {
-    Envie selectedPlayers para o backend para criar o time
-    console.log(selectedPlayers)
-  }
-  */
+  const attackers = teamTemporary.filter(
+    (player) => player.position === 'Attacker'
+  )
+  const midfielders = teamTemporary.filter(
+    (player) => player.position === 'Midfielder'
+  )
+  const defenders = teamTemporary.filter(
+    (player) => player.position === 'Defender'
+  )
+  const goalkeeper = teamTemporary.filter(
+    (player) => player.position === 'Goalkeeper'
+  )
 
   return (
     <div className="h-full flex flex-col relative">
@@ -88,9 +107,9 @@ export default function SelectTeam() {
             </div>
           </div>
           <div className="h-4/5 flex">
-            <div className="w-2/5 bg-white">
+            <div className="w-2/5 bg-white flex flex-col">
               <ButtonGroup />
-              <div className="overflow-y-auto max-h-full">
+              <div className="flex-1 flex flex-col overflow-y-auto">
                 {players.map((player) => (
                   <PlayerCard
                     key={player.id}
@@ -100,61 +119,12 @@ export default function SelectTeam() {
                 ))}
               </div>
             </div>
-            <div className="w-3/5 flex justify-center">
-              <div className="w-auto relative">
-                <Image
-                  src="/football-field.jpg"
-                  alt="football field"
-                  width={430}
-                  height={608}
-                  className="w-full h-full"
-                />
-
-                <PlayerPosition x={'left-10'} y={'top-24'} name={'Keno'} />
-                <PlayerPosition
-                  x={'left-1/2 transform -translate-x-1/2'}
-                  y={'top-16'}
-                  name={'G. Cano'}
-                />
-                <PlayerPosition x={'right-10'} y={'top-24'} name={'J. Arias'} />
-                <PlayerPosition
-                  x={'left-1/4'}
-                  y={'top-1/2 transform -translate-y-1/2'}
-                  name={'Martinelli'}
-                />
-                <PlayerPosition
-                  x={'left-1/2 transform -translate-x-1/2'}
-                  y={'top-1/3'}
-                  name={'Ganso'}
-                />
-                <PlayerPosition
-                  x={'right-1/4'}
-                  y={'top-1/2 transform -translate-y-1/2'}
-                  name={'André'}
-                />
-                <PlayerPosition x={'left-7'} y={'bottom-32'} name={'Marcelo'} />
-                <PlayerPosition
-                  x={'left-1/3'}
-                  y={'bottom-28'}
-                  name={'F. Melo'}
-                />
-                <PlayerPosition
-                  x={'right-1/3'}
-                  y={'bottom-28'}
-                  name={'Manoel'}
-                />
-                <PlayerPosition
-                  x={'right-7'}
-                  y={'bottom-32'}
-                  name={'S. Xavier'}
-                />
-                <PlayerPosition
-                  x={'left-1/2 transform -translate-x-1/2'}
-                  y={'bottom-7'}
-                  name={'Fabio'}
-                />
-              </div>
-            </div>
+            <FootballField
+              attackers={attackers}
+              midfielders={midfielders}
+              defenders={defenders}
+              goalkeeper={goalkeeper}
+            />
           </div>
         </main>
       </div>
