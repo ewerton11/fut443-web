@@ -44,15 +44,6 @@ export default function SelectTeam() {
           [...selectedPlayers, playerId]
         )
 
-        {
-          /*
-        ao tentar adicionar 4 atacantes o quarto fica armazenado no array 
-        e se tenta adiconar algum outro que tem vaga, gera error pos o array
-        antigo com o quarto atacante deixa invalido, devo criar um logica para que
-        quando a api me retornar um error esse ultimo id selecionado deve ser removido
-          */
-        }
-
         const newSelectedPlayers = teamTemporaryData.map((player) => player.id)
         setSelectedPlayers(newSelectedPlayers)
         setTeamTemporary(teamTemporaryData)
@@ -115,7 +106,10 @@ export default function SelectTeam() {
           <div className="h-4/5 flex">
             <div className="w-2/5 bg-white flex flex-col">
               <ButtonGroup />
-              <div className="flex-1 flex flex-col overflow-y-auto">
+              <div
+                className="flex-1 flex flex-col overflow-y-auto"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
                 {players.map((player) => (
                   <PlayerCard
                     key={player.id}
