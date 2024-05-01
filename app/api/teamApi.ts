@@ -1,11 +1,12 @@
+import { AxiosResponse } from 'axios'
 import apiService from './axiosConfig'
 
 export const addPlayerToTeamData = async (
   id: string,
   playerIds: string[]
-): Promise<any> => {
+): Promise<PlayersData[]> => {
   try {
-    const response = await apiService.post(
+    const response: AxiosResponse<PlayersData[]> = await apiService.post(
       `/team/temporary/create/${id}`,
       playerIds
     )
