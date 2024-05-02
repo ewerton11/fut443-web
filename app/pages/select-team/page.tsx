@@ -8,6 +8,7 @@ import Footer from '@/app/components/footer/footer'
 import Header from '@/app/components/header/header'
 import VerticalMenu from '@/app/components/menu/verticalMenu'
 import PlayerCard from '@/app/components/players/PlayerCard'
+import DownArrow from '@/public/down-arrow'
 import { useEffect, useState } from 'react'
 
 export default function SelectTeam() {
@@ -82,8 +83,9 @@ export default function SelectTeam() {
           <div className="w-full h-1/5 flex justify-around items-center">
             <div className="w-1/3 flex justify-center items-center">
               <p className="text-sm text-gray-600 mr-2">Campeonato</p>
-              <button className="bg-primary-blue p-2 rounded-md">
-                <p className="text-sm">Libertadores</p>
+              <button className="flex bg-primary-blue p-1 rounded-md">
+                <p className="text-white text-sm">Libertadores</p>
+                <DownArrow />
               </button>
             </div>
 
