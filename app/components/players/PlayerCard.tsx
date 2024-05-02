@@ -38,7 +38,7 @@ const PlayerCard = ({
 
   return (
     <div
-      className={`w-full h-24 flex border-b border-gray-300 ${
+      className={`w-full min-h-24 flex border-b border-gray-300 ${
         blockedByRepetitions || blockedByLimit ? '' : 'cursor-pointer'
       }`}
       onClick={blockedByRepetitions || blockedByLimit ? undefined : handleClick}
@@ -46,8 +46,10 @@ const PlayerCard = ({
       <div className="ml-5 flex justify-center items-center">
         {blockedByRepetitions ? (
           <RemoveIcon width={35} height={35} color="#e78878" />
+        ) : blockedByLimit ? (
+          <AddIcon width={35} height={35} fillColor="#e78878" />
         ) : (
-          <AddIcon width={35} height={35} fillColor="#A8A8A8" />
+          <AddIcon width={35} height={35} fillColor="#93C5FD" />
         )}
       </div>
       <div className="w-4/5 flex">
@@ -70,7 +72,7 @@ const PlayerCard = ({
               className={`${
                 blockedByRepetitions || blockedByLimit
                   ? 'bg-gray-200 text-gray-400'
-                  : 'bg-white text-black'
+                  : 'bg-blue-300 text-black'
               } text-xs px-2 rounded-md font-bold`}
             >
               ATA
