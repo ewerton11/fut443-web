@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { IM_Fell_Great_Primer } from 'next/font/google'
 import { useState } from 'react'
 
 export default function Header() {
@@ -11,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-primary-blue w-full max-w-full h-14 flex justify-between items-center">
+      <header className="sticky top-0 z-50 bg-primary-blue w-full max-w-full min-h-12 flex justify-between items-center">
         <div className="block md:hidden w-28 h-full">
           <div className="h-full flex items-center">
             <button onClick={toggleMenu} className="pl-4">
@@ -41,15 +42,9 @@ export default function Header() {
             </button>
           </div>
         </div>
-        <div className="w-36 h-full">
+        <div className="w-36 h-full flex justify-end">
           <Link href="/" className="h-full flex justify-center items-center">
-            <Image
-              src="/Fut443-logo.png"
-              width={100}
-              height={100}
-              alt="logo fut443"
-              className="w-4/5 h-4/5 object-cover hidden md:block"
-            />
+            <p className="text-3xl text-white font-im_fell">FUT433</p>
             <Image
               src="/F-logo.png"
               width={100}
@@ -59,21 +54,21 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="w-auto h-full flex pr-16">
-          <div className="flex items-center mr-4">
+        <div className="w-48 h-full flex justify-start">
+          <div className="flex justify-center items-center px-2">
             <Link
               href="/pages/register"
-              className="px-2 py-1.5 flex justify-center items-center bg-white rounded-md"
+              className="p-1 flex justify-center items-center bg-white rounded-md"
             >
               <p className="text-blue-600 text-sm tracking-wider font-medium">
                 Registrar
               </p>
             </Link>
           </div>
-          <div className="w-10 h-full flex items-center">
+          <div className="flex justify-center items-center px-2">
             <Link
               href="/pages/login"
-              className="w-full h-3/5 flex justify-center items-center"
+              className="flex justify-center items-center"
             >
               <p className="text-white text-sm tracking-wider font-medium">
                 Login

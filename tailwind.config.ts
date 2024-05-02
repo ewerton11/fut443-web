@@ -12,6 +12,9 @@ const config: Config = {
         'primary-blue': '#9e9ee7',
         customGray: '#808080',
       },
+      fontFamily: {
+        im_fell: ['var(--font-im_fell)'],
+      },
     },
   },
   plugins: [],
