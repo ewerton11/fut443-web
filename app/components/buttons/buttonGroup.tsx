@@ -10,11 +10,11 @@ const buttons = [
 
 const ButtonGroup = () => {
   return (
-    <div className="w-full h-16 flex justify-around border-b border-gray-300">
+    <div className="w-full h-16 flex justify-around">
       {buttons.map((button, index) => (
-        <div key={index} className="w-14 flex items-center">
-          <button className="w-full h-1/2 rounded-md bg-primary-blue flex justify-center items-center">
-            <p className="text-sm">{button.label}</p>
+        <div key={index} className="w-20 flex items-center">
+          <button className="w-full h-3/5 rounded-md bg-primary-blue flex justify-center items-center">
+            <p className="text-base text-white font-bold">{button.label}</p>
           </button>
         </div>
       ))}
