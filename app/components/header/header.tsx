@@ -43,15 +43,13 @@ export default function Header() {
           </div>
         </div>
         <div className="w-36 h-full flex justify-end">
-          <Link href="/" className="h-full flex justify-center items-center">
-            <p className="text-3xl text-white font-im_fell">FUT433</p>
-            <Image
-              src="/F-logo.png"
-              width={100}
-              height={100}
-              alt="logo fut443"
-              className="w-4/5 h-4/5 object-cover md:hidden"
-            />
+          <Link
+            href="/"
+            className="h-full hidden sm:flex justify-center items-center"
+          >
+            <p className="md:text-3xl text-xl text-white font-im_fell">
+              FUT433
+            </p>
           </Link>
         </div>
         <div className="w-48 h-full flex justify-start">
