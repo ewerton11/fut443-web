@@ -47,7 +47,7 @@ export default function Header() {
             href="/"
             className="h-full hidden sm:flex justify-center items-center"
           >
-            <p className="md:text-3xl text-xl text-white font-im_fell">
+            <p className="text-xl md:text-3xl text-white font-im_fell">
               FUT433
             </p>
           </Link>
