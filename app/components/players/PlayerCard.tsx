@@ -61,8 +61,8 @@ const PlayerCard = ({
           >
             <Image
               src="/cano.png"
-              width={60}
-              height={60}
+              width={64}
+              height={64}
               alt="profile player"
               className="object-cover"
             />
@@ -82,7 +82,7 @@ const PlayerCard = ({
         <div className="ml-5 flex-1 flex flex-col">
           <div className="h-1/2 flex items-end">
             <p
-              className={`${
+              className={`text-base ${
                 blockedByRepetitions || blockedByLimit
                   ? 'text-gray-400'
                   : 'font-bold'

@@ -10,13 +10,13 @@ const PlayerPosition = ({ x, y, name }: FieldPlayerProps) => (
   <div className={`absolute ${x} ${y} z-10 flex flex-col items-center`}>
     {name ? (
       <>
-        <div className="w-16 h-16 bg-gray-200 rounded-full"></div>
+        <div className="sm:w-14 md:w-16 sm:h-14 md:h-16 bg-gray-200 rounded-full"></div>
         <p className="w-full text-sm text-center bg-gray-200 rounded-lg px-2">
           {name}
         </p>
       </>
     ) : (
-      <div className="w-16 h-16 bg-gray-200 rounded-full flex justify-center items-center">
+      <div className="sm:w-14 md:w-16 sm:h-14 md:h-16 bg-gray-200 rounded-full flex justify-center items-center">
         <AddIcon width={35} height={35} fillColor="#A8A8A8" />
       </div>
     )}

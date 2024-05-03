@@ -80,33 +80,48 @@ export default function SelectTeam() {
       <main className="w-full flex-1 flex flex-col">
         <div className="w-full h-28 flex justify-around items-center">
           <div className="w-1/3 flex justify-center items-center">
-            <p className="text-base text-gray-600 mr-2">Campeonato</p>
-            <button className="flex bg-primary-blue p-1 rounded-md">
-              <p className="text-white text-base font-semibold">Libertadores</p>
+            <p className="sm:text-sm md:text-base text-gray-600 mr-2">
+              Campeonato
+            </p>
+            <button className="flex items-center bg-primary-blue p-1 rounded-md">
+              <p className="sm:text-sm md:text-base text-white pl-2">
+                Libertadores
+              </p>
               <DownArrow />
             </button>
           </div>
 
-          <div className="w-1/3 flex justify-center items-center">
-            <div className="w-12 h-12 bg-gray-300 flex justify-center items-center mr-2">
-              <p className="text-lg font-bold">05</p>
+          <div className="w-1/3 flex justify-center items-center font-bold sm:text-base md:text-lg">
+            <div className="sm:w-8 md:w-10 sm:h-8 md:h-10 bg-gray-300 flex justify-center items-center mr-2">
+              <p>05</p>
             </div>
-            <div className="w-12 h-12 bg-gray-300 flex justify-center items-center ">
-              <p className="text-lg font-bold">35</p>
+            <div className="sm:w-8 md:w-10 sm:h-8 md:h-10 bg-gray-300 flex justify-center items-center ">
+              <p>35</p>
             </div>
-            <div className="w-12 h-12 bg-gray-300 flex justify-center items-center ml-2">
-              <p className="text-lg font-bold">01</p>
+            <div className="sm:w-8 md:w-10 sm:h-8 md:h-10 bg-gray-300 flex justify-center items-center ml-2">
+              <p>01</p>
             </div>
           </div>
 
           <div className="w-1/3 flex justify-center items-center">
-            <h1 className="text-xl font-bold">SUA ESCALAÇÃO</h1>
+            <h1 className="sm:text-base md:text-xl">SUA ESCALAÇÃO</h1>
           </div>
         </div>
 
-        <div className="min-h-screen flex">
-          <div className="w-1/2 flex justify-center">
-            <div className="w-4/5 flex flex-col" style={{ height: '90vh' }}>
+        <div className="min-h-screen md:flex md:flex-row-reverse">
+          <div className="w-full md:w-1/2 max-md:mb-4 flex items-center">
+            <FootballField
+              attackers={attackers}
+              midfielders={midfielders}
+              defenders={defenders}
+              goalkeeper={goalkeeper}
+            />
+          </div>
+          <div className="w-full md:w-1/2 md:flex justify-center max-md:mb-4">
+            <div
+              className="w-full md:w-4/5 flex flex-col"
+              style={{ height: '90vh' }}
+            >
               <ButtonGroup />
               <div
                 className="flex-1 flex flex-col overflow-y-auto"
@@ -127,12 +142,6 @@ export default function SelectTeam() {
               </div>
             </div>
           </div>
-          <FootballField
-            attackers={attackers}
-            midfielders={midfielders}
-            defenders={defenders}
-            goalkeeper={goalkeeper}
-          />
         </div>
       </main>
       <Footer />
