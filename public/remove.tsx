@@ -1,6 +1,12 @@
 import React from 'react'
 
-const RemoveIcon = ({ width, height, color }) => (
+interface RemoveIconProps {
+  width: number
+  height: number
+  color: string
+}
+
+const RemoveIcon = ({ width, height, color }: RemoveIconProps) => (
   <svg
     width={width}
     height={height}

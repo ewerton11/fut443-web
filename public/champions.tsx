@@ -1,6 +1,12 @@
 import React from 'react'
 
-const ChampionIcon = ({ width, height, fill }) => (
+interface ChampionIconProps {
+  width: number
+  height: number
+  fill: string
+}
+
+const ChampionIcon = ({ width, height, fill }: ChampionIconProps) => (
   <svg
     width={width}
     height={height}

@@ -1,6 +1,13 @@
 import React from 'react'
 
-const RecentIcon = ({ width, height, fill, strokeColor }) => (
+interface RecentIconProps {
+  width: number
+  height: number
+  fill: string
+  strokeColor: string
+}
+
+const RecentIcon = ({ width, height, fill, strokeColor }: RecentIconProps) => (
   <svg
     width={width}
     height={height}

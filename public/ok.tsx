@@ -1,6 +1,12 @@
 import React from 'react'
 
-const OkIcon = ({ width, height, fillColor }) => (
+interface OkIconProps {
+  width: number
+  height: number
+  fillColor: string
+}
+
+const OkIcon = ({ width, height, fillColor }: OkIconProps) => (
   <svg
     width={width}
     height={height}

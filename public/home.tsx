@@ -1,6 +1,12 @@
 import React from 'react'
 
-const HomeIcon = ({ width, height, strokeColor }) => (
+interface HomeIconProps {
+  width: number
+  height: number
+  strokeColor: string
+}
+
+const HomeIcon = ({ width, height, strokeColor }: HomeIconProps) => (
   <svg
     width={width}
     height={height}

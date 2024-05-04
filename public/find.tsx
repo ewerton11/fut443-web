@@ -1,6 +1,13 @@
 import React from 'react'
 
-const FindIcon = ({ width, height, fill, strokeColor }) => (
+interface FindIconProps {
+  width: number
+  height: number
+  fill: string
+  strokeColor: string
+}
+
+const FindIcon = ({ width, height, fill, strokeColor }: FindIconProps) => (
   <svg
     width={width}
     height={height}

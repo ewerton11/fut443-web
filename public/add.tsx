@@ -1,6 +1,12 @@
 import React from 'react'
 
-const AddIcon = ({ width, height, fillColor }) => (
+interface AddIconProps {
+  width: number
+  height: number
+  fillColor: string
+}
+
+const AddIcon = ({ width, height, fillColor }: AddIconProps) => (
   <svg
     width={width}
     height={height}
