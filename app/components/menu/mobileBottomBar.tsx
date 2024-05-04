@@ -19,8 +19,8 @@ const MobileBottomBar = () => {
           >
             <div className="w-1/2 h-1/2">
               <HomeIcon
-                width="100%"
-                height="100%"
+                width={20}
+                height={20}
                 strokeColor={pathname === '/' ? '#3b3b3b' : '#808080'}
               />
             </div>
@@ -42,8 +42,8 @@ const MobileBottomBar = () => {
           >
             <div className="w-1/2 h-1/2">
               <ChampionIcon
-                width="100%"
-                height="100%"
+                width={100}
+                height={100}
                 fill={pathname === '/champion' ? '#3b3b3b' : '#808080'}
               />
             </div>
@@ -65,8 +65,8 @@ const MobileBottomBar = () => {
           >
             <div className="w-1/2 h-1/2">
               <FindIcon
-                width="100%"
-                height="100%"
+                width={100}
+                height={100}
                 fill="#ffffff"
                 strokeColor={pathname === '/find' ? '#3b3b3b' : '#808080'}
               />
@@ -89,8 +89,8 @@ const MobileBottomBar = () => {
           >
             <div className="w-1/2 h-1/2">
               <RecentIcon
-                width="100%"
-                height="100%"
+                width={100}
+                height={100}
                 fill="#ffffff"
                 strokeColor={pathname === '/recent' ? '#3b3b3b' : '#808080'}
               />

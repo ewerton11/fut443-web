@@ -1,35 +1,71 @@
 'use client'
 
-import { getAllPlayersByChampionshipData } from '@/app/api/championshipApi'
+import {
+  getAllChampionshipInProgress,
+  getAllPlayersByChampionshipData,
+} from '@/app/api/championshipApi'
 import { addPlayerToTeamData } from '@/app/api/teamApi'
 import ButtonGroup from '@/app/components/buttons/buttonGroup'
 import FootballField from '@/app/components/footballField/footballField'
 import Footer from '@/app/components/footer/footer'
 import Header from '@/app/components/header/header'
-import VerticalMenu from '@/app/components/menu/verticalMenu'
 import PlayerCard from '@/app/components/players/PlayerCard'
 import DownArrow from '@/public/down-arrow'
 import { useEffect, useState } from 'react'
 
 export default function SelectTeam() {
   const [players, setPlayers] = useState<PlayersData[]>([])
+  const [championshipInProgress, setChampionshipInProgress] = useState<
+    ChampionshipInProgessData[]
+  >([])
+  const [idChampionship, setIdChampionship] = useState<string>()
+  const [positionOrder, setPositionOrder] = useState<null | string>(null)
+  const [showListChampionship, setShowListChampionship] =
+    useState<boolean>(false)
+  const [isArrowRotated, setIsArrowRotated] = useState(false)
   const [teamTemporary, setTeamTemporary] = useState<PlayersData[]>([])
   const [selectedPlayers, setSelectedPlayers] = useState<string[]>([])
 
+  /*
   useEffect(() => {
-    const fetchPlayers = async () => {
+    const fetchData = async () => {
       try {
+        const championshipData = await getAllChampionshipInProgress()
+        setChampionshipInProgress(championshipData)
+
+        
+        const params = idChampionship ?? championshipInProgress?.[0]?.id
         const allPlayersByChampionship = await getAllPlayersByChampionshipData(
-          '002D4417-E422-4717-B7F2-64FF0AF55605'
+          `${params}?position=${positionOrder}`
         )
         setPlayers(allPlayersByChampionship)
       } catch (error) {
-        console.error('Erro ao buscar jogadores:')
+        console.error('deu erro aqui hein crllll', error)
       }
     }
 
-    fetchPlayers()
+    fetchData()
+  }, [championshipInProgress, idChampionship, positionOrder])
+*/
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const championshipData = await getAllChampionshipInProgress()
+        setChampionshipInProgress(championshipData)
+        console.log('Data', championshipData)
+      } catch (error) {}
+    }
+
+    fetchData()
   }, [])
+
+  {
+    /*
+  const handleListChampionship = () => {
+    setShowListChampionship(!showListChampionship)
+    setIsArrowRotated(!isArrowRotated)
+  }
 
   const handlePlayerClick = async (playerId: string) => {
     try {
@@ -73,22 +109,56 @@ export default function SelectTeam() {
   const goalkeeper = teamTemporary.filter(
     (player) => player.position === 'Goalkeeper'
   )
+*/
+  }
 
   return (
     <div className="h-full flex flex-col relative">
+      {/*
       <Header />
       <main className="w-full flex-1 flex flex-col">
         <div className="w-full h-28 flex justify-around items-center">
-          <div className="w-1/3 flex justify-center items-center">
+          <div className="relative w-1/3 flex justify-center items-center">
             <p className="sm:text-sm md:text-base text-gray-600 mr-2">
               Campeonato
             </p>
-            <button className="flex items-center bg-primary-blue p-1 rounded-md">
+            <button
+              className="flex items-center bg-primary-blue p-1 rounded-md"
+              onClick={handleListChampionship}
+            >
               <p className="sm:text-sm md:text-base text-white pl-2">
-                Libertadores
+                {championshipInProgress?.[0]?.name}
               </p>
-              <DownArrow />
+              <div
+                className={`transform transition-transform duration-75 ${
+                  showListChampionship ? 'rotate-180' : 'rotate-0'
+                }`}
+              >
+                <DownArrow />
+              </div>
             </button>
+            {showListChampionship && (
+              <div className="absolute top-full z-10 mt-1 w-40 bg-blue-200 rounded-md shadow-lg">
+                <ul className="py-1 sm:text-sm md:text-base text-left">
+                  {championshipInProgress.map((championship) => (
+                    <li
+                      key={championship.id}
+                      className="border-b border-gray-200"
+                    >
+                      <button
+                        className="block w-full px-4 py-2 hover:bg-gray-200"
+                        onClick={(id) => {
+                          setIdChampionship(championship.id)
+                          setShowListChampionship(false)
+                        }}
+                      >
+                        {championship.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="w-1/3 flex justify-center items-center font-bold sm:text-base md:text-lg">
@@ -122,7 +192,11 @@ export default function SelectTeam() {
               className="w-full md:w-4/5 flex flex-col"
               style={{ height: '90vh' }}
             >
-              <ButtonGroup />
+              <ButtonGroup
+                onPositionSelect={(order: string | null) =>
+                  setPositionOrder(order)
+                }
+              />
               <div
                 className="flex-1 flex flex-col overflow-y-auto"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -145,6 +219,7 @@ export default function SelectTeam() {
         </div>
       </main>
       <Footer />
+              */}
     </div>
   )
 }
