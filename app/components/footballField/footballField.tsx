@@ -80,7 +80,7 @@ const FootballField = ({
 
       {/* Defenders */}
       <div
-        className={`absolute left-16 bottom-32 sm:left-24 xl:left-28 2xl:left-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
+        className={`absolute left-16 bottom-36 sm:left-24 xl:left-28 2xl:left-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
       >
         <PlayerPosition
           player={defenders?.[0]}
@@ -88,7 +88,7 @@ const FootballField = ({
         />
       </div>
       <div
-        className={`absolute left-36 sm:left-48 xl:left-56 2xl:left-[35%] bottom-28 sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
+        className={`absolute left-36 bottom-32 sm:left-48 xl:left-56 2xl:left-[35%] sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
       >
         <PlayerPosition
           player={defenders?.[1]}
@@ -96,7 +96,7 @@ const FootballField = ({
         />
       </div>
       <div
-        className={`absolute right-36 sm:right-48 xl:right-56 2xl:right-[35%] bottom-28 sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
+        className={`absolute right-36 bottom-32 sm:right-48 xl:right-56 2xl:right-[35%] sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
       >
         <PlayerPosition
           player={defenders?.[2]}
@@ -104,7 +104,7 @@ const FootballField = ({
         />
       </div>
       <div
-        className={`absolute right-16 bottom-32 sm:right-24 xl:right-28 2xl:right-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
+        className={`absolute right-16 bottom-36 sm:right-24 xl:right-28 2xl:right-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
       >
         <PlayerPosition
           player={defenders?.[3]}
