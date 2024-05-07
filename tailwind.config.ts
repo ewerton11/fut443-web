@@ -15,6 +15,9 @@ const config: Config = {
       fontFamily: {
         im_fell: ['var(--font-im_fell)'],
       },
+      screens: {
+        'field-sm': '430px',
+      },
     },
   },
   plugins: [],
