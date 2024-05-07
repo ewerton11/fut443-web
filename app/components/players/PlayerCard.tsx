@@ -10,7 +10,8 @@ interface PlayerCardProps {
   defenders: PlayersData[]
   goalkeeper: PlayersData[]
   teamTemporary: PlayersData[]
-  onClick: (playerId: string) => void
+  onPlayerAdd: (playerId: string) => void
+  onPlayerRemove: (playerId: string) => void
 }
 
 const PlayerCard = ({
@@ -20,12 +21,9 @@ const PlayerCard = ({
   defenders,
   goalkeeper,
   teamTemporary,
-  onClick,
+  onPlayerAdd,
+  onPlayerRemove,
 }: PlayerCardProps) => {
-  const handleClick = () => {
-    onClick(player.id)
-  }
-
   const blockedByRepetitions = teamTemporary.some(
     (selectedPlayer) => selectedPlayer.id === player.id
   )
@@ -41,9 +39,20 @@ const PlayerCard = ({
       className={`w-full min-h-24 flex border-b border-gray-300 ${
         blockedByRepetitions || blockedByLimit ? '' : 'cursor-pointer'
       }`}
-      onClick={blockedByRepetitions || blockedByLimit ? undefined : handleClick}
+      onClick={
+        blockedByRepetitions || blockedByLimit
+          ? undefined
+          : () => onPlayerAdd(player.id)
+      }
     >
-      <div className="ml-5 flex justify-center items-center">
+      <div
+        className={`ml-5 flex justify-center items-center ${
+          blockedByRepetitions ? 'cursor-pointer' : ''
+        }`}
+        onClick={
+          blockedByRepetitions ? () => onPlayerRemove(player.id) : undefined
+        }
+      >
         {blockedByRepetitions ? (
           <RemoveIcon width={35} height={35} color="#e78878" />
         ) : blockedByLimit ? (
@@ -55,7 +64,7 @@ const PlayerCard = ({
       <div className="w-4/5 flex">
         <div className="ml-5 flex items-center relative">
           <div
-            className={`rounded-full overflow-hidden ${
+            className={`rounded-full flex justify-center items-center overflow-hidden ${
               blockedByRepetitions || blockedByLimit ? 'grayscale' : ''
             }`}
           >
@@ -82,7 +91,7 @@ const PlayerCard = ({
         <div className="ml-5 flex-1 flex flex-col">
           <div className="h-1/2 flex items-end">
             <p
-              className={`text-base ${
+              className={`text-base 2xl:text-xl ${
                 blockedByRepetitions || blockedByLimit
                   ? 'text-gray-400'
                   : 'font-bold'
