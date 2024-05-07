@@ -6,6 +6,7 @@ interface Props {
   midfielders?: PlayersData[]
   defenders?: PlayersData[]
   goalkeeper?: PlayersData[]
+  onPlayerRemove: (id: string) => void
 }
 
 const FootballField = ({
@@ -13,71 +14,113 @@ const FootballField = ({
   midfielders,
   defenders,
   goalkeeper,
+  onPlayerRemove,
 }: Props) => {
   return (
-    <div className="w-full relative" style={{ height: '90vh' }}>
+    <div className="w-full field-sm:w-[430px] h-[380px] sm:w-[600px] sm:h-[530px] xl:w-[683px] xl:h-[580px] 2xl:w-[820px] 2xl:h-[700px] relative">
       <Image
         src="/football-field.png"
         alt="football field"
         width={1000}
         height={1000}
-        className="w-full h-full object-contain"
+        className="w-full h-full sm:object-fill"
       />
 
       {/* Attackers */}
-      <PlayerPosition x={'left-44'} y={'top-20'} name={attackers?.[0]?.name} />
-      <PlayerPosition
-        x={'left-1/2 transform -translate-x-1/2'}
-        y={'top-10'}
-        name={attackers?.[1]?.name}
-      />
-      <PlayerPosition x={'right-44'} y={'top-20'} name={attackers?.[2]?.name} />
+      <div
+        className={`absolute left-28 sm:left-44 top-12 sm:top-16 2xl:left-[30%] 2xl:top-[13%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={attackers?.[0]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute left-1/2 transform -translate-x-1/2 top-10 2xl:top-[7%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={attackers?.[1]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute right-28 sm:right-44 2xl:right-[30%] top-12 2xl:top-[13%] sm:top-16 z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={attackers?.[2]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
 
       {/* Midfielders */}
-      <PlayerPosition
-        x={'left-1/3'}
-        y={'bottom-1/2'}
-        name={midfielders?.[0]?.name}
-      />
-      <PlayerPosition
-        x={'left-1/2 transform -translate-x-1/2'}
-        y={'top-36'}
-        name={midfielders?.[1]?.name}
-      />
-      <PlayerPosition
-        x={'right-1/3'}
-        y={'bottom-1/2'}
-        name={midfielders?.[2]?.name}
-      />
+      <div
+        className={`absolute left-28 sm:left-44 xl:left-[32%] 2xl:left-[30%] bottom-[52%] 2xl:bottom-[50%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={midfielders?.[0]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute left-1/2 transform -translate-x-1/2 top-28 sm:top-36 2xl:top-[27%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={midfielders?.[1]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute right-28 sm:right-44 xl:right-[32%] 2xl:right-[30%] bottom-[52%] 2xl:bottom-[50%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={midfielders?.[2]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
 
       {/* Defenders */}
-      <PlayerPosition
-        x={'left-32'}
-        y={'bottom-56'}
-        name={defenders?.[0]?.name}
-      />
-      <PlayerPosition
-        x={'left-1/3'}
-        y={'bottom-44'}
-        name={defenders?.[1]?.name}
-      />
-      <PlayerPosition
-        x={'right-1/3'}
-        y={'bottom-44'}
-        name={defenders?.[2]?.name}
-      />
-      <PlayerPosition
-        x={'right-32'}
-        y={'bottom-56'}
-        name={defenders?.[3]?.name}
-      />
+      <div
+        className={`absolute left-16 bottom-32 sm:left-24 xl:left-28 2xl:left-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={defenders?.[0]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute left-36 sm:left-48 xl:left-56 2xl:left-[35%] bottom-28 sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={defenders?.[1]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute right-36 sm:right-48 xl:right-56 2xl:right-[35%] bottom-28 sm:bottom-40 xl:bottom-52 z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={defenders?.[2]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
+      <div
+        className={`absolute right-16 bottom-32 sm:right-24 xl:right-28 2xl:right-[17%] sm:bottom-44 xl:bottom-56 2xl:bottom-[35%] z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={defenders?.[3]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
 
       {/* Goalkeeper */}
-      <PlayerPosition
-        x={'left-1/2 transform -translate-x-1/2'}
-        y={'bottom-24'}
-        name={goalkeeper?.[0]?.name}
-      />
+      <div
+        className={`absolute left-1/2 transform -translate-x-1/2 bottom-14 sm:bottom-20 xl:bottom-28 z-10 flex flex-col items-center`}
+      >
+        <PlayerPosition
+          player={goalkeeper?.[0]}
+          onPlayerRemove={onPlayerRemove}
+        />
+      </div>
     </div>
   )
 }
