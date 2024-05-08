@@ -159,8 +159,8 @@ export default function SelectTeam() {
               </div>
             </button>
             {showChampionshipList && (
-              <div className="absolute top-full z-10 mt-1 w-40 bg-blue-200 rounded-md shadow-lg">
-                <ul className="py-1 text-sm md:text-base text-left">
+              <div className="absolute top-full z-10 mt-1 w-40 bg-gray-100 rounded-md shadow-lg">
+                <ul className="text-sm md:text-base text-left">
                   {championshipInProgress.map((championship) => (
                     <li
                       key={championship.id}
@@ -182,14 +182,26 @@ export default function SelectTeam() {
             )}
           </div>
 
-          <div className="w-1/3 flex justify-center items-center font-bold text-sm sm:text-base md:text-lg 2xl:text-xl">
-            <div className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300 flex justify-center items-center mr-2">
+          <div
+            className="w-1/3 flex justify-center items-center font-bold text-sm
+           sm:text-base md:text-lg 2xl:text-xl"
+          >
+            <div
+              className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300
+             flex justify-center items-center mr-2"
+            >
               <p>05</p>
             </div>
-            <div className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300 flex justify-center items-center ">
+            <div
+              className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300
+             flex justify-center items-center "
+            >
               <p>35</p>
             </div>
-            <div className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300 flex justify-center items-center ml-2">
+            <div
+              className="w-8 md:w-10 h-8 md:h-10 2xl:w-12 2xl:h-12 bg-gray-300
+             flex justify-center items-center ml-2"
+            >
               <p>01</p>
             </div>
           </div>
@@ -201,8 +213,14 @@ export default function SelectTeam() {
           </div>
         </div>
 
-        <div className="h-auto max-2xl:min-h-[90vh] 2xl:h-[75vh] lg:flex lg:flex-row-reverse justify-center">
-          <div className="w-full lg:w-auto h-[60vh] sm:h-[80vh] xl:h-screen 2xl:h-[75vh] flex justify-center items-center 2xl:ml-10">
+        <div
+          className="h-auto max-2xl:min-h-[90vh] 2xl:h-[75vh] lg:flex lg:flex-row-reverse
+         justify-center"
+        >
+          <div
+            className="w-full lg:w-auto h-[60vh] sm:h-[80vh] xl:h-screen 2xl:h-[75vh] 
+          flex justify-center items-center 2xl:ml-10"
+          >
             <FootballField
               attackers={attackers}
               midfielders={midfielders}
@@ -212,7 +230,10 @@ export default function SelectTeam() {
             />
           </div>
           <div className="w-full lg:max-w-1/2 2xl:w-[30vw] lg:flex justify-center mb-4 2xl:mr-10">
-            <div className="w-full xl:w-4/5 h-[80vh] xl:h-screen 2xl:w-full 2xl:h-full flex flex-col">
+            <div
+              className="w-full xl:w-4/5 h-[80vh] xl:h-screen 2xl:w-full 2xl:h-full 
+            flex flex-col bg-white shadow-md p-5 rounded-lg"
+            >
               <ButtonGroup
                 onPositionSelect={(order: string | null) =>
                   setPositionOrder(order)
