@@ -21,12 +21,10 @@ const ButtonGroup = ({ onPositionSelect }: ButtonOrderProps) => {
           className="w-16 sm:w-24 md:w-32 lg:w-20 flex items-center"
         >
           <button
-            className="w-full py-1.5 lg:py-0 md:h-8 rounded-md bg-primary-blue flex justify-center items-center"
+            className="w-full py-1.5 lg:py-0 md:h-8 rounded-md bg-gray-200 flex justify-center items-center"
             onClick={() => onPositionSelect(button.value)}
           >
-            <p className="text-sm sm:text-base lg:text-sm text-white">
-              {button.label}
-            </p>
+            <p className="text-sm sm:text-base lg:text-sm">{button.label}</p>
           </button>
         </div>
       ))}
