@@ -14,6 +14,10 @@ interface PlayerCardProps {
   onPlayerRemove: (playerId: string) => void
 }
 
+interface TranslatedPositions {
+  [key: string]: string
+}
+
 const PlayerCard = ({
   player,
   attackers,
@@ -24,6 +28,22 @@ const PlayerCard = ({
   onPlayerAdd,
   onPlayerRemove,
 }: PlayerCardProps) => {
+  const translatedPositions: TranslatedPositions = {
+    ST: 'CA', // Centroavante (Striker)
+    LW: 'PE', // Ponta Esquerda (Left Winger)
+    RW: 'PD', // Ponta Direita (Right Winger)
+    CAM: 'MA', // Meio-Atacante (Attacking Midfielder)
+    CM: 'ME', // Meio-Campista (Midfielder)
+    CDM: 'VOL', // Volante (Defensive Midfielder)
+    LB: 'LE', // Lateral Esquerdo (Left Back)
+    RB: 'LD', // Lateral Direito (Right Back)
+    CB: 'ZAG', // Zagueiro Central (Center Back)
+    WB: 'ZAG', // Zagueiro Lateral (Wing Back)
+    GK: 'GOL', // Goleiro (Goalkeeper)
+  }
+
+  const translatePosition = (abbr: string) => translatedPositions[abbr] ?? abbr
+
   const blockedByRepetitions = teamTemporary.some(
     (selectedPlayer) => selectedPlayer.id === player.id
   )
@@ -78,30 +98,34 @@ const PlayerCard = ({
           </div>
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center">
             <p
-              className={`${
+              className={`bg-gray-200 ${
                 blockedByRepetitions || blockedByLimit
-                  ? 'bg-gray-200 text-gray-400'
-                  : 'bg-blue-300 text-black'
-              } text-xs px-2 rounded-md font-bold`}
+                  ? 'text-gray-500'
+                  : 'text-black'
+              } text-xs px-2 rounded-md`}
             >
-              ATA
+              {translatePosition(player.specificPosition)}
             </p>
           </div>
         </div>
         <div className="ml-5 flex-1 flex flex-col">
           <div className="h-1/2 flex items-end">
             <p
-              className={`text-base 2xl:text-xl ${
-                blockedByRepetitions || blockedByLimit
-                  ? 'text-gray-400'
-                  : 'font-bold'
+              className={`text-base 2xl:text-xl font-bold ${
+                blockedByRepetitions || blockedByLimit ? 'text-gray-500' : ''
               }`}
             >
               {player.name}
             </p>
           </div>
-          <div className="h-1/2 flex items-start">
-            <p>{player.club}</p>
+          <div
+            className={`h-1/2 flex items-start text-sm ${
+              blockedByRepetitions || blockedByLimit
+                ? 'text-gray-400'
+                : 'text-gray-500'
+            }`}
+          >
+            <p>{player.clubName}</p>
           </div>
         </div>
       </div>
